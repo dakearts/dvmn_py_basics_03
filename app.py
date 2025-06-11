@@ -26,9 +26,11 @@ heading = "%heading%"
 website = "%website%"
 friend_name = "%friend_name%"
 sender_name = "%my_name%"
+email_from = "serg.chelsea@yandex.ru"
+email_to = "dakearts@yandex.ru"
 
-email = email.replace(heading, """From: serg.chelsea@yandex.ru
-To: dakearts@yandex.ru
+email = email.replace(heading, f"""From: {email_from}
+To: {email_to}
 Subject: Приглашение!
 Content-Type: text/plain; charset="UTF-8";""")
 email = email.replace(website, "https://dvmn.org/profession-ref-program/")
@@ -40,6 +42,5 @@ server = smtplib.SMTP_SSL('smtp.yandex.ru', 465)
 login = os.getenv('LOGIN')
 password = os.getenv('PASSWORD')
 server.login(login, password)
-server.sendmail('serg.chelsea@yandex.ru', 'dakearts@yandex.ru', email)
+server.sendmail(email_from, email_to, email)
 server.quit()
-
